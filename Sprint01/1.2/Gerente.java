@@ -7,10 +7,7 @@ class Gerente extends Funcionario {
 
     public void cadastrarFuncionario(Funcionario funcionario) {
         // Lógica para cadastrar um novo funcionário no sistema
-        System.out.println("Sistema de Cadastro");
-        System.out.println(" Funcionário cadastrado: \n "  + "Nome: "    + funcionario.getNome()  + 
-                        "\nEndereÇo: " + funcionario.getEndereco() + "\n Email:  " + funcionario.getEmail() + "\n Telefone: " + funcionario.getTelefone() + "\n Cargo:  " + funcionario.getCargo() + " \nSalario: " + funcionario.getSalario());
-        
+        System.out.println("Funcionário cadastrado: " + funcionario.getNome());
     }
 
     public void definirPermissoes(Funcionario funcionario) {
