@@ -1,0 +1,1 @@
+Como funcionário do clube, gostaria de ter acesso a um painel administrativo onde posso visualizar e atualizar os detalhes dos associados e dependentes, como informações de contato, status de pagamento e atividades esportivas registradas.
