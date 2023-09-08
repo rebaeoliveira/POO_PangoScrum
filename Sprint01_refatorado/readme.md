@@ -13,3 +13,5 @@ Funcionario.java
 Com o refatoramento, arquivo "UsaGerente.java" foi eliminado, pois agora será usado o arquivo "CadastrarFuncionario.java".
 
 Como a Sprint01 já foi entregue, subi todos os arquivos em uma única pasta chamada "Sprint01_refatorado". Esses arquivos devem ser usados para dar sequência na Sprint02.
+
+Rafael Cambito
