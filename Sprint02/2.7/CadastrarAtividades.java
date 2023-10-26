@@ -2,6 +2,7 @@
 //  do clube recreativo, fornecendo informações como nome da atividade, descrição, 
 // faixa etária indicada, níveis de habilidade, turmas e horários disponíveis incluindo
 //  dias da semana e horários de início e término das aulas.
+
 import java.io.*;
 import java.util.*;
 
@@ -75,7 +76,7 @@ public class CadastrarAtividades {
         try {
             FileWriter fileWriter = new FileWriter("CadastrarAtividades.json");
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
+        
             // Construir uma representação JSON manualmente (incluindo nome do funcionário e cargo)
             bufferedWriter.write("{");
             bufferedWriter.write("\"nomeFuncionario\":\"" + funcionario.getNome() + "\",");
@@ -120,7 +121,7 @@ public class CadastrarAtividades {
                             bufferedWriter.write(",");
                         }
                     }
-                    bufferedWriter.write("}");
+                    bufferedWriter.write("]}");
                     if (j < turmas.size() - 1) {
                         bufferedWriter.write(",");
                     }
@@ -131,11 +132,13 @@ public class CadastrarAtividades {
                 }
             }
             bufferedWriter.write("]}");
-
+        
             bufferedWriter.close();
             System.out.println("Atividades cadastradas com sucesso e salvas em CadastrarAtividades.json.");
+        
         } catch (IOException e) {
             System.err.println("Erro ao salvar atividades em CadastrarAtividades.json: " + e.getMessage());
         }
+        
     }
 }
