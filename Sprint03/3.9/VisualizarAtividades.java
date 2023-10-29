@@ -1,15 +1,11 @@
 import java.util.*;
 
-
 class Atividade {
     private String nome;
     private String descricao;
     private String habilidade;
-    
-
     private List<String> niveisHabilidade;
     private List<Turma> turmas;
-    private List<Associado> associados;
 
     public Atividade(String nome, String descricao, String habilidade) {
         this.nome = nome;
@@ -17,7 +13,6 @@ class Atividade {
         this.habilidade = habilidade;
         this.niveisHabilidade = new ArrayList<>();
         this.turmas = new ArrayList<>();
-        this.associados = new ArrayList<>(); // Inicialize a lista de associados.
     }
 
     public String getNome() {
@@ -28,7 +23,7 @@ class Atividade {
         return descricao;
     }
 
-    public String gethabilidadeAtividade() {
+    public String getHabilidade() {
         return habilidade;
     }
 
@@ -47,69 +42,53 @@ class Atividade {
     public List<Turma> getTurmas() {
         return turmas;
     }
-
-     // Adicionado o método getAssociados()
-     public List<Associado> getAssociados() {
-         return associados; 
-     }
 }
 
 class Turma {
-     private String atividade; 
-     private String instrutor; 
-     private List<String> horarios; 
-     private List<String> diasSemana;
+    private String instrutor;
+    private List<String> horarios;
+    private List<String> diasSemana;
 
-     public Turma(String atividade, String instrutor) { 
-         this.atividade = atividade; 
-         this.instrutor = instrutor; 
-         this.horarios = new ArrayList<>(); 
-         this.diasSemana = new ArrayList<>(); 
-     } 
+    public Turma(String instrutor) {
+        this.instrutor = instrutor;
+        this.horarios = new ArrayList<>();
+        this.diasSemana = new ArrayList<>();
+    }
 
-     public String getAtividade() { 
-         return atividade; 
-     } 
+    public String getInstrutor() {
+        return instrutor;
+    }
 
-     public String getInstrutor() { 
-         return instrutor; 
-     } 
+    public void adicionarHorario(String horario) {
+        this.horarios.add(horario);
+    }
 
-     public void adicionarHorario(String horario) { 
-         this.horarios.add(horario); 
-     } 
+    public void adicionarDiaSemana(String diaSemana) {
+        this.diasSemana.add(diaSemana);
+    }
 
-     public void adicionarDiaSemana(String diaSemana) { 
-         this.diasSemana.add(diaSemana); 
-     } 
+    public List<String> getHorarios() {
+        return horarios;
+    }
 
-     public List<String> getHorarios() { 
-         return horarios; 
-     } 
-
-     public List<String> getDiasSemana() { 
-         return diasSemana; 
-     } 
-} 
-
-
+    public List<String> getDiasSemana() {
+        return diasSemana;
+    }
+}
 
 public class VisualizarAtividades {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         List<Atividade> atividades = new ArrayList<>();
         int opcao;
-        
-    
-        // Verifique as credenciais do funcionário (adicione lógica apropriada aqui)
 
         do {
             System.out.println("Selecione uma opção:");
             System.out.println("3 - Visualizar atividades cadastradas");
-
             System.out.println("5 - Adicionar nova atividade");
             System.out.println("0 - Sair");
             opcao = scanner.nextInt();
+            scanner.nextLine(); // Consumir a nova linha
 
             switch (opcao) {
                 case 3:
@@ -120,37 +99,50 @@ public class VisualizarAtividades {
                     break;
             }
         } while (opcao != 0);
-    }
 
+        scanner.close(); // Fechando o Scanner ao sair do programa
+    }
 
     public static void visualizarAtividadesCadastradas(List<Atividade> atividades) {
-        System.out.println("Atividades cadastradas:");
+        System.out.println("Atividades esportivas cadastradas:");
 
-        for (int i = 0; i < atividades.size(); i++) {
-            System.out.println(i + " - " + atividades.get(i).getNome() + " - " + atividades.get(i).getDescricao() + " - " + atividades.get(i).gethabilidadeAtividade());
+        for (Atividade atividade : atividades) {
+            System.out.println("Nome da Atividade: " + atividade.getNome());
+            System.out.println("Descrição: " + atividade.getDescricao());
+            System.out.println("Habilidade: " + atividade.getHabilidade());
+
+            List<Turma> turmas = atividade.getTurmas();
+            System.out.println("Turmas Disponíveis:");
+
+            for (Turma turma : turmas) {
+                System.out.println("Instrutor: " + turma.getInstrutor());
+                System.out.println("Horários: " + turma.getHorarios());
+                System.out.println("Dias da Semana: " + turma.getDiasSemana());
+                System.out.println("Níveis de Habilidade: " + atividade.getNiveisHabilidade());
+                System.out.println();
+            }
+
+            System.out.println();
         }
     }
-   
 
     public static void adicionarNovaAtividade(List<Atividade> atividades) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Digite o nome da nova atividade:");
-        String nomeAtividade = scanner.next();
+        System.out.println("Digite o nome da nova atividade esportiva:");
+        String nomeAtividade = scanner.nextLine();
 
         System.out.println("Digite a descrição da nova atividade:");
-        String descricaoAtividade = scanner.next();
+        String descricaoAtividade = scanner.nextLine();
 
-        System.out.println("Digite a habilidade para a nova atividade:");
-        String habilidade = scanner.next();
-
+        System.out.println("Digite a habilidade necessária para a nova atividade:");
+        String habilidade = scanner.nextLine();
 
         Atividade novaAtividade = new Atividade(nomeAtividade, descricaoAtividade, habilidade);
         atividades.add(novaAtividade);
 
+        System.out.println("Nova atividade esportiva adicionada com sucesso.");
 
-
-        System.out.println("Nova atividade adicionada com sucesso.");
+        scanner.close(); // Fechando o Scanner após a entrada de dados
     }
-
 }
